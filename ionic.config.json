@@ -1,0 +1,7 @@
+{
+  "name": "frontendrepeatproj",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
