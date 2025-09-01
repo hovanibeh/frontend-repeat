@@ -1,0 +1,36 @@
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+
+import { provideRouter } from '@angular/router';
+
+import { routes } from './app.routes';
+
+import { provideIonicAngular } from '@ionic/angular/standalone';
+
+import { provideHttpClient } from '@angular/common/http';
+
+// Add these imports for Storage
+
+import { IonicStorageModule } from '@ionic/storage-angular';
+
+export const appConfig: ApplicationConfig = {
+
+  providers: [
+
+    provideRouter(routes), 
+
+    provideIonicAngular({}),
+
+    provideHttpClient(),
+
+    // Add IonicStorageModule using importProvidersFrom
+
+    importProvidersFrom(
+
+      IonicStorageModule.forRoot()
+
+    )
+
+  ]
+
+};
+ 

@@ -1,13 +1,74 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>home-pages</ion-title>
+  <ion-title>
+       Repeat Project 2025
+  </ion-title>
   </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home-pages</ion-title>
-    </ion-toolbar>
   </ion-header>
-</ion-content>
+  <ion-content [fullscreen]="true" class="ion-padding">
+  <div id="container">
+  <h2>Student Verification</h2>
+  <!-- Student ID Input -->
+  <ion-card>
+  <ion-card-header>
+  <ion-card-title>Student Verification</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+  <ion-item>
+  <ion-label position="stacked">Enter your G00 Number</ion-label>
+  <ion-input
+             type="text"
+             [(ngModel)]="studentId"
+             placeholder="G00123456"
+             (keyup.enter)="verifyStudent()">
+  </ion-input>
+  </ion-item>
+  <ion-button expand="block" color="primary" (click)="verifyStudent()" [disabled]="!studentId">
+           VERIFY STUDENT ID
+  </ion-button>
+  <div *ngIf="isVerified" class="verification-success">
+  <ion-icon name="checkmark-circle" color="success"></ion-icon>
+  <span>Student ID verified successfully!</span>
+  </div>
+  </ion-card-content>
+  </ion-card>
+  <!-- Name Input (only shown after verification) -->
+  <ion-card *ngIf="isVerified">
+  <ion-card-header>
+  <ion-card-title>Welcome</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+  <ion-item>
+  <ion-label position="stacked">Enter your name</ion-label>
+  <ion-input
+             type="text"
+             [(ngModel)]="username"
+             placeholder="Your name"
+             (keyup.enter)="updateMessage()">
+  </ion-input>
+  </ion-item>
+  <!-- Display welcome message -->
+  <div class="welcome-container" *ngIf="welcomeMessage">
+  <ion-card color="success">
+  <ion-card-content>
+  <h3>{{ welcomeMessage }}</h3>
+  <p>Welcome to your Front-End Development project!</p>
+  </ion-card-content>
+  </ion-card>
+  </div>
+  <ion-button expand="block" color="primary" (click)="updateMessage()" [disabled]="!username">
+           SAY HI
+  </ion-button>
+  </ion-card-content>
+  </ion-card>
+  <!-- Action Buttons -->
+  <div class="button-container">
+  <ion-button expand="block" fill="outline" color="medium" (click)="goToDetails()">
+         GO TO DETAILS
+  </ion-button>
+  <ion-button expand="block" fill="clear" color="danger" (click)="clearData()">
+         CLEAR DATA
+  </ion-button>
+  </div>
+  </div>
+  </ion-content>
